@@ -1,16 +1,7 @@
 
 import React from 'react';
 import TaskItem from './TaskItem';
-
-interface Task {
-  id: string;
-  title: string;
-  description: string;
-  completed: boolean;
-  priority: 'low' | 'medium' | 'high';
-  dueDate: string;
-  createdAt: string;
-}
+import { Task } from '@/hooks/useTasks';
 
 interface TaskListProps {
   tasks: Task[];
@@ -31,7 +22,7 @@ const TaskList: React.FC<TaskListProps> = ({
     switch (filter) {
       case 'today':
         const today = new Date().toDateString();
-        return task.dueDate && new Date(task.dueDate).toDateString() === today;
+        return task.due_date && new Date(task.due_date).toDateString() === today;
       case 'important':
         return task.priority === 'high';
       case 'completed':

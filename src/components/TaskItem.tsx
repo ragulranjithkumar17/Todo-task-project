@@ -1,16 +1,7 @@
 
 import React from 'react';
 import { Check, Star, Calendar, Edit, Trash2 } from 'lucide-react';
-
-interface Task {
-  id: string;
-  title: string;
-  description: string;
-  completed: boolean;
-  priority: 'low' | 'medium' | 'high';
-  dueDate: string;
-  createdAt: string;
-}
+import { Task } from '@/hooks/useTasks';
 
 interface TaskItemProps {
   task: Task;
@@ -39,9 +30,9 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onEdit, onDelete })
   };
 
   const isOverdue = () => {
-    if (!task.dueDate) return false;
+    if (!task.due_date) return false;
     const today = new Date();
-    const dueDate = new Date(task.dueDate);
+    const dueDate = new Date(task.due_date);
     return dueDate < today && !task.completed;
   };
 
@@ -84,12 +75,12 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onEdit, onDelete })
               {task.priority}
             </span>
             
-            {task.dueDate && (
+            {task.due_date && (
               <div className={`flex items-center gap-1 ${
                 isOverdue() ? 'text-red-600' : 'text-gray-500'
               }`}>
                 <Calendar className="w-3 h-3" />
-                <span>{formatDate(task.dueDate)}</span>
+                <span>{formatDate(task.due_date)}</span>
               </div>
             )}
           </div>

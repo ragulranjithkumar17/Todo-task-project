@@ -34,7 +34,16 @@ export const useTasks = (userId: string | undefined) => {
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setTasks(data || []);
+      
+      // Map and validate the data
+      const mappedTasks = (data || []).map(task => ({
+        ...task,
+        priority: (task.priority === 'low' || task.priority === 'medium' || task.priority === 'high') 
+          ? task.priority 
+          : 'medium' as const
+      }));
+      
+      setTasks(mappedTasks);
     } catch (error: any) {
       console.error('Error fetching tasks:', error);
       toast({
@@ -67,7 +76,14 @@ export const useTasks = (userId: string | undefined) => {
 
       if (error) throw error;
       
-      setTasks(prev => [data, ...prev]);
+      const mappedTask = {
+        ...data,
+        priority: (data.priority === 'low' || data.priority === 'medium' || data.priority === 'high') 
+          ? data.priority 
+          : 'medium' as const
+      };
+      
+      setTasks(prev => [mappedTask, ...prev]);
       toast({
         title: "Task created",
         description: "Your task has been created successfully.",
@@ -99,7 +115,14 @@ export const useTasks = (userId: string | undefined) => {
 
       if (error) throw error;
       
-      setTasks(prev => prev.map(task => task.id === id ? data : task));
+      const mappedTask = {
+        ...data,
+        priority: (data.priority === 'low' || data.priority === 'medium' || data.priority === 'high') 
+          ? data.priority 
+          : 'medium' as const
+      };
+      
+      setTasks(prev => prev.map(task => task.id === id ? mappedTask : task));
       toast({
         title: "Task updated",
         description: "Your task has been updated successfully.",
@@ -128,7 +151,14 @@ export const useTasks = (userId: string | undefined) => {
 
       if (error) throw error;
       
-      setTasks(prev => prev.map(task => task.id === id ? data : task));
+      const mappedTask = {
+        ...data,
+        priority: (data.priority === 'low' || data.priority === 'medium' || data.priority === 'high') 
+          ? data.priority 
+          : 'medium' as const
+      };
+      
+      setTasks(prev => prev.map(task => task.id === id ? mappedTask : task));
     } catch (error: any) {
       console.error('Error toggling task:', error);
       toast({
