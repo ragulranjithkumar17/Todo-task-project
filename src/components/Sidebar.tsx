@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Calendar, Plus, Filter, Users, Star, CheckCircle } from 'lucide-react';
+import { Calendar, Plus, Star, Users, CheckCircle } from 'lucide-react';
 
 interface SidebarProps {
   activeFilter: string;
@@ -53,11 +53,6 @@ const Sidebar: React.FC<SidebarProps> = ({ activeFilter, onFilterChange, onAddTa
               >
                 <Icon className="w-5 h-5" />
                 <span className="flex-1">{item.label}</span>
-                {item.count > 0 && (
-                  <span className="px-2 py-1 text-xs bg-gray-200 text-gray-600 rounded-full">
-                    {item.count}
-                  </span>
-                )}
               </button>
             );
           })}
