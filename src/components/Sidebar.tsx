@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Calendar, Plus, Star, Users, CheckCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface SidebarProps {
   activeFilter: string;
@@ -17,50 +18,52 @@ const Sidebar: React.FC<SidebarProps> = ({ activeFilter, onFilterChange, onAddTa
   ];
 
   return (
-    <div className="w-64 bg-white border-r border-gray-200 h-screen flex flex-col">
-      <div className="p-6 border-b border-gray-100">
-        <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+    <div className="w-64 bg-white border-r border-border h-screen flex flex-col shadow-sm">
+      <div className="p-6 border-b border-border">
+        <h1 className="text-2xl font-bold gradient-text">
           FlowVerse
         </h1>
-        <p className="text-sm text-gray-500 mt-1">Task Management</p>
+        <p className="text-sm text-muted-foreground mt-1">Task Management</p>
       </div>
 
       <div className="p-4">
-        <button
+        <Button
           onClick={onAddTask}
-          className="w-full flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-md hover:shadow-lg"
+          className="w-full justify-start gap-3"
+          size="lg"
         >
           <Plus className="w-5 h-5" />
           Add New Task
-        </button>
+        </Button>
       </div>
 
       <nav className="flex-1 px-4">
-        <div className="space-y-1">
+        <div className="space-y-2">
           {menuItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeFilter === item.id;
             
             return (
-              <button
+              <Button
                 key={item.id}
                 onClick={() => onFilterChange(item.id)}
-                className={`w-full flex items-center gap-3 px-4 py-3 text-left rounded-lg transition-all duration-200 ${
+                variant={isActive ? "secondary" : "ghost"}
+                className={`w-full justify-start gap-3 h-12 ${
                   isActive
-                    ? 'bg-blue-50 text-blue-700 border-r-2 border-blue-500'
-                    : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                    ? 'bg-primary/10 text-primary border-r-2 border-primary font-medium'
+                    : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
                 <Icon className="w-5 h-5" />
-                <span className="flex-1">{item.label}</span>
-              </button>
+                <span className="flex-1 text-left">{item.label}</span>
+              </Button>
             );
           })}
         </div>
       </nav>
 
-      <div className="p-4 border-t border-gray-100">
-        <div className="text-xs text-gray-500 text-center">
+      <div className="p-4 border-t border-border">
+        <div className="text-xs text-muted-foreground text-center">
           Built with ❤️ using Lovable
         </div>
       </div>
