@@ -36,11 +36,11 @@ export const useTasks = (userId: string | undefined) => {
       if (error) throw error;
       
       // Map and validate the data
-      const mappedTasks = (data || []).map(task => ({
+      const mappedTasks: Task[] = (data || []).map(task => ({
         ...task,
         priority: (task.priority === 'low' || task.priority === 'medium' || task.priority === 'high') 
-          ? task.priority 
-          : 'medium' as const
+          ? task.priority as 'low' | 'medium' | 'high'
+          : 'medium' as 'low' | 'medium' | 'high'
       }));
       
       setTasks(mappedTasks);
@@ -76,11 +76,11 @@ export const useTasks = (userId: string | undefined) => {
 
       if (error) throw error;
       
-      const mappedTask = {
+      const mappedTask: Task = {
         ...data,
         priority: (data.priority === 'low' || data.priority === 'medium' || data.priority === 'high') 
-          ? data.priority 
-          : 'medium' as const
+          ? data.priority as 'low' | 'medium' | 'high'
+          : 'medium' as 'low' | 'medium' | 'high'
       };
       
       setTasks(prev => [mappedTask, ...prev]);
@@ -115,11 +115,11 @@ export const useTasks = (userId: string | undefined) => {
 
       if (error) throw error;
       
-      const mappedTask = {
+      const mappedTask: Task = {
         ...data,
         priority: (data.priority === 'low' || data.priority === 'medium' || data.priority === 'high') 
-          ? data.priority 
-          : 'medium' as const
+          ? data.priority as 'low' | 'medium' | 'high'
+          : 'medium' as 'low' | 'medium' | 'high'
       };
       
       setTasks(prev => prev.map(task => task.id === id ? mappedTask : task));
@@ -151,11 +151,11 @@ export const useTasks = (userId: string | undefined) => {
 
       if (error) throw error;
       
-      const mappedTask = {
+      const mappedTask: Task = {
         ...data,
         priority: (data.priority === 'low' || data.priority === 'medium' || data.priority === 'high') 
-          ? data.priority 
-          : 'medium' as const
+          ? data.priority as 'low' | 'medium' | 'high'
+          : 'medium' as 'low' | 'medium' | 'high'
       };
       
       setTasks(prev => prev.map(task => task.id === id ? mappedTask : task));
