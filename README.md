@@ -1,18 +1,11 @@
-# Welcome to your Lovable project
+# Welcome to our project 
 
-## Project info
-
-**URL**: https://lovable.dev/projects/d9495a3d-61bb-4440-a2c7-4864af447e9d
+Todo task flow project video
+   URL :https://drive.google.com/file/d/1kspajchTG0iy4k1YEbqnKRFzN1_tzhWp/view?usp=sharing
 
 ## How can I edit this code?
 
 There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/d9495a3d-61bb-4440-a2c7-4864af447e9d) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
 
 **Use your preferred IDE**
 
